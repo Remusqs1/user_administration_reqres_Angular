@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeUserComponent } from './users/home-user/home-user.component';
 import { TokenGuard } from '@core/guard/token/token.guard';
 
-const routes: Routes = [
+const featureRoutes: Routes = [
   {
     path: 'users',
     component: HomeUserComponent,
@@ -16,7 +16,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(featureRoutes)],
   exports: [RouterModule],
 })
 export class FeatureRoutingModule {

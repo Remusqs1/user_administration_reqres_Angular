@@ -35,8 +35,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -148,5 +147,8 @@
       }
     }
   },
-  "defaultProject": "Custom-list"
+  "defaultProject": "Custom-list",
+  "cli": {
+    "analytics": "ccb6a945-3c54-4459-a43b-d9e03d48e92f"
+  }
 }
