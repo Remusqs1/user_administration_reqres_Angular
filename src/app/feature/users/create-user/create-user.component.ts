@@ -13,13 +13,15 @@ export class CreateUserComponent implements OnInit {
   ) {
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    console.log("On create user");
+    
+    // throw new Error('Method not implemented.');
   }
 
   /**
    * Este método no se puede modificar
    * */
-  public redirectToListUsers(): void {
-    this.router.navigateByUrl('/users/list');
-  }
+  // public redirectToListUsers(): void {
+  //   this.router.navigateByUrl('/users/list');
+  // }
 }

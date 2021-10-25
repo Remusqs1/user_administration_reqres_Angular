@@ -7,9 +7,10 @@ const featureRoutes: Routes = [
   {
     path: 'users',
     component: HomeUserComponent,
-    canActivate: [TokenGuard],
+    // canActivate: [TokenGuard],
     loadChildren: () => import('./users/users.module').then(i => i.UsersModule),
-  }, {
+  }, 
+  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(i => i.LoginModule),
   },

@@ -3,4 +3,31 @@
   ids = user-list__filter, user-list__table, user-list__table-item-[index], user-list__table-item-[index]-avatar, user-list__table-item-[index]-first_name, user-list__table-item-[index]-email, user-list__table-item-[index]-btn-delete
   Remplazar [index] por el valor ejemplo "user-list__table-item-0"
 -->
-
+<app-nav-bar></app-nav-bar>
+<div class="pl-10 pr-10">
+  <div class="mt-20">
+    <input class="white large outlined" type="text" placeholder="Search user by name" name="user_list_filter" id="user-list__filter" [(ngModel)]="user_list_filter">
+  </div>
+  <div class="card w-auto mx-auto pb-30 mt-20">
+    <table id="user-list__table">
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>email</th>
+          <th>avatar</th>
+          <th>button</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of userList | filterUserByName: user_list_filter" id="{{'user-list__table-item' + i}}">
+          <td id="{{'user-list__table-item-'+ i + '-first_name'}}">{{user.first_name}} </td>
+          <td id="{{'user-list__table-item-'+ i + '-last_name'}}">{{user.last_name}}</td>
+          <td id="{{'user-list__table-item-'+ i + '-email'}}">{{user.email}}</td>
+          <td id="{{'user-list__table-item-'+ i + '-avatar'}}"><img src="{{user.avatar}}" alt=""></td>
+          <td><button class="danger" (click)="onDelete(user.first_name, user.last_name, i)"
+              id="{{'user-list__table-item-'+ i + '-btn-delete'}}">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

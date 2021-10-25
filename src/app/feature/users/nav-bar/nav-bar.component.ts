@@ -23,4 +23,13 @@ export class NavBarComponent implements OnInit {
     this.router.navigateByUrl('/login');
     localStorage.removeItem('token');
   }
+  
+  onCreate(){
+    this.router.navigate(['create']);
+
+  }
+
+  onList(){ 
+    this.router.navigateByUrl('/list');
+  }
 }
