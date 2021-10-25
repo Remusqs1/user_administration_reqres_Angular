@@ -5,17 +5,25 @@
 -->
 <app-nav-bar></app-nav-bar>
 <div class="pl-10 pr-10">
-  <div class="mt-20">
-    <input class="white large outlined" type="text" placeholder="Search user by name" name="user_list_filter" id="user-list__filter" [(ngModel)]="user_list_filter">
+  <div class="layout-row align-items-center justify-content-center mt-20">
+    <input class="white large outlined mr-30" type="text" placeholder="Search user by name" name="user_list_filter"
+      id="user-list__filter" [(ngModel)]="user_list_filter" (keypress)="numberOnly($event)">
+    <div *ngIf="totalPages > 1">
+      <button class="pagerButton" (click)="GoPage(1)"> << </button>
+      <button class="pagerButton" *ngFor="let item of totalPagesArray, let i = index" (click)="GoPage(i+1)"> {{i+1}}
+      </button>
+      <button class="pagerButton" (click)="GoPage(totalPages)"> >> </button>
+    </div>
   </div>
   <div class="card w-auto mx-auto pb-30 mt-20">
     <table id="user-list__table">
       <thead>
         <tr>
-          <th>name</th>
-          <th>email</th>
-          <th>avatar</th>
-          <th>button</th>
+          <th>Name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Avatar</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -30,4 +38,17 @@
       </tbody>
     </table>
   </div>
+
+  <div class="layout-row align-items-center justify-content-center mt-20" *ngIf="totalPages > 1">
+      <button class="pagerButton"(click)="GoPage(1)"> << </button>
+      <button class="pagerButton" *ngFor="let item of totalPagesArray, let i = index" (click)="GoPage(i+1)"> {{i+1}} </button>
+      <button class="pagerButton" (click)="GoPage(totalPages)"> >> </button>
+  </div>
+
+    <form id="pagerForm" [formGroup]="pagerForm" class="layout-row align-items-center justify-content-center mt-20">
+      <label for="items per page">Items per page </label>
+        <input class="white large outlined w-3 ml-10" type="text" placeholder="#" name="perPage" id="perPage" formControlName="perPage">
+        <button (click)="setItemsPerPage()"> GO</button>
+      </form>
+
 </div>

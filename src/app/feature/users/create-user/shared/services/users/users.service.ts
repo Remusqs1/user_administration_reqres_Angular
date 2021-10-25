@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,17 +10,31 @@ import { Observable } from 'rxjs';
 })
 export class UsersService {
 
-  constructor(private http: HttpClient){}
+  token :string;
+  headers :Headers;
+  constructor(private http: HttpClient){
+    
+  }
   
-  getUsers(): Observable<any>{
-    return this.http.get("https://reqres.in/api/users");
+  getUsers(page:number, perPage: number): Observable<any>{
+    return this.http.get("https://reqres.in/api/users?page="+page+"&per_page="+perPage);
   }
 
-  createUser() {
+  createUser(input : any): Observable<any> {
 
+    this.token =localStorage.getItem('token')
+    const headers = new HttpHeaders({
+      'Authorization': this.token,
+      'Content-Type': 'application/json',
+      'CustomHeader' : "CustomSomething"
+    })
+    return this.http.post("https://reqres.in/api/users", input, {
+      headers: headers
+    });
   }
 
   deleteUserForIndex(index: number) {
     return this.http.delete("https://reqres.in/api/users/"+index);
   }
+
 }

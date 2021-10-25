@@ -3,4 +3,41 @@
   ids = user-create__name, user-create__name-error, user-create__job, user-create__job-error, user-create__btn-create
 -->
 <app-nav-bar></app-nav-bar>
-<h2>Create</h2>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/h8k-design@latest/dist/index.css">
+
+<div class="card mt-20 ml-20 mr-20">
+  <section class="card-text">
+    <div class="layout-row justify-content-around align-items-center">
+      <h3 class="mt-0 mb-0">Create User</h3>
+    </div>
+  </section>
+
+  <section class="layout-row align-items-center justify-content-center" id="inputs-section">
+    <form id="createForm" [formGroup]="createForm">
+      <div>
+        <input class="white large outlined" type="text" placeholder="Name" formControlName="name" id="user-create__name">
+        <div style="color: red;" id="user-create__name-error">
+          <span
+            *ngIf="(createForm.controls['name'].errors !== null && createForm.controls['name'].errors.required) && (createForm.controls['name'].errors && (createForm.controls['name'].dirty || createForm.controls['name'].touched))">
+            * Name is required
+          </span>
+        </div>
+      </div>
+      <div class="mt-10">
+        <input class="white large outlined" type="text" required="" placeholder="Job" id="user-create__job"
+          formControlName="job" name="Job">
+        <div style="color: red;" id="user-create__job-error">
+          <span
+            *ngIf="(createForm.controls['job'].errors !== null && createForm.controls['job'].errors.required) && (createForm.controls['job'].errors && (createForm.controls['job'].dirty || createForm.controls['job'].touched))">
+            * Job is required
+          </span>
+        </div>
+      </div>
+    </form>
+  </section>
+  <section class="layout-row align-items-center justify-content-center card-actions">
+    <button class="secondary flat" (click)="onCreate()" id="user-create__btn-create" [disabled]="this.createForm.invalid">
+      Create
+    </button>
+  </section>
+</div>
