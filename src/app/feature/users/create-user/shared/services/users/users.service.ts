@@ -17,7 +17,16 @@ export class UsersService {
   }
   
   getUsers(page:number, perPage: number): Observable<any>{
-    return this.http.get("https://reqres.in/api/users?page="+page+"&per_page="+perPage);
+    this.token =localStorage.getItem('token')
+    const headers = new HttpHeaders({
+      'Authorization': this.token,
+      'Content-Type': 'application/json',
+      'CustomHeader' : "CustomSomething2"
+    })
+
+    return this.http.get("https://reqres.in/api/users?page="+page+"&per_page="+perPage, {
+      headers: headers
+    });
   }
 
   createUser(input : any): Observable<any> {
@@ -26,7 +35,7 @@ export class UsersService {
     const headers = new HttpHeaders({
       'Authorization': this.token,
       'Content-Type': 'application/json',
-      'CustomHeader' : "CustomSomething"
+      'CustomHeader' : "CustomSomething1"
     })
     return this.http.post("https://reqres.in/api/users", input, {
       headers: headers
@@ -34,7 +43,15 @@ export class UsersService {
   }
 
   deleteUserForIndex(index: number) {
-    return this.http.delete("https://reqres.in/api/users/"+index);
+    this.token =localStorage.getItem('token')
+    const headers = new HttpHeaders({
+      'Authorization': this.token,
+      'Content-Type': 'application/json',
+      'CustomHeader' : "CustomSomething3"
+    })
+    return this.http.delete("https://reqres.in/api/users/"+index, {
+      headers: headers
+    });
   }
 
 }
